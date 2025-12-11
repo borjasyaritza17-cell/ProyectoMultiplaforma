@@ -16,7 +16,7 @@ interface Character {
 export default function App() {
   return (
     <>
-      {/* HEADER */}
+      {}
       <header className="hp-header">
         <h1 className="hp-title">HARRY POTTER</h1>
 
@@ -26,7 +26,7 @@ export default function App() {
         </nav>
       </header>
 
-      {/* RUTAS */}
+      {}
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/personajes" element={<Personajes />} />
@@ -36,9 +36,7 @@ export default function App() {
   );
 }
 
-/* ===========================
-        PÁGINA INICIO
-=========================== */
+
 function Inicio() {
   return (
     <section className="inicio-completo">
@@ -59,26 +57,23 @@ function Inicio() {
   );
 }
 
-/* ===========================
-      PÁGINA PERSONAJES
-=========================== */
+
 function Personajes() {
   const [data, setData] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState(""); // Buscador
+  const [search, setSearch] = useState(""); 
 
   useEffect(() => {
     fetch("https://hp-api.onrender.com/api/characters")
       .then((res) => res.json())
       .then((json) => {
-        setData(json.slice(0, 20)); // Mostrar solo 20
+        setData(json.slice(0, 20)); 
         setLoading(false);
       });
   }, []);
 
   if (loading) return <h2 className="cargando">Cargando personajes...</h2>;
 
-  // Filtrar por nombre
   const filtrados = data.filter((p) =>
     p.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -87,7 +82,7 @@ function Personajes() {
     <section className="personajes-section">
       <h1>Personajes</h1>
 
-      {/* 🔥 BUSCADOR EN ESQUINA DERECHA */}
+      {}
       <div className="buscador-contenedor">
         <input
           type="text"
@@ -128,9 +123,7 @@ function Personajes() {
   );
 }
 
-/* ===========================
-   PÁGINA DETALLE PERSONAJE
-=========================== */
+
 function DetallePersonaje() {
   const { nombre } = useParams();
   const [personaje, setPersonaje] = useState<Character | null>(null);
